@@ -35,6 +35,42 @@ def sqrt(x, kmax=100, initial_guess=1.0, tol = 1e-14, printshow=1):
     print("After %2d iterations, s = %20.15f" % (k+1,s))
     return s
 
+def factorial(x):
+    s = 1
+    for k in range(1, n):
+        s = s * (k + 1)
+    return s
+
+def exp(x):
+    e = 2.7182818284590451
+    x0 = int(round(x))
+    
+    z = x - x0
+    ex = 0
+    for i in range(10):
+        ex += (e**x0)*(z**i)/factorial(i)
+
+    return ex
+
+
+
+def ln(x):
+    x = 1.0*x
+    kmax = 1000000
+    if x == 0.0:
+       return 0.0
+    elif x < 0.0:
+       print("**ERROR: input value is not non-negative**")
+       return -1.0
+
+    s = x
+    for k in range(kmax):
+        sold = -1.0 + x*exp(-1*s)
+        s = s + sold
+        if (abs(sold) < 1.0e-14):
+            break
+
+    return s
 
 
 
