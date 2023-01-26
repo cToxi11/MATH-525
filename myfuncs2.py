@@ -35,7 +35,7 @@ def sqrt(x, kmax=100, initial_guess=1.0, tol = 1e-14, printshow=1):
     print("After %2d iterations, s = %20.15f" % (k+1,s))
     return s
 
-def factorial(x):
+def factorial(n):
     s = 1
     for k in range(1, n):
         s = s * (k + 1)
@@ -47,7 +47,7 @@ def exp(x):
     
     z = x - x0
     ex = 0
-    for i in range(10):
+    for i in range(16):
         ex += (e**x0)*(z**i)/factorial(i)
 
     return ex
