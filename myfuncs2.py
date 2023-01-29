@@ -14,10 +14,13 @@ def sqrt(x, kmax=100, initial_guess=1.0, tol = 1e-14, printshow=1):
            printshow: positive number if want to show the calculating process, default is 1
     """
 
-
+    #print ("The square root of %2d is,   "%x)
     # convert input to float
     x = 1.0*x
     # check if input makes sense
+    
+    
+    
     if x == 0.0:
        return 0.0
     elif x < 0.0:
@@ -26,15 +29,25 @@ def sqrt(x, kmax=100, initial_guess=1.0, tol = 1e-14, printshow=1):
     # main loop
     s = initial_guess
     for k in range(kmax):
-        if printshow > 0:
-           print("Before iteration %2d, s = %20.15f" % (k,s))
         sold = s
         s = 0.5*(s + x/s)
+        if printshow > 0:
+           print("Before iteration %2d, s = %20.15f" % (k,s))
+
         if (abs((s-sold)/x) < tol):
             break
     print("After %2d iterations, s = %20.15f" % (k+1,s))
     return s
 
+def test_sqrt():
+    print("The square root of %2d is: " % 0)
+    print(sqrt(0))
+    print("The square root of %2d is: " % -3)
+    print(sqrt(-3))
+    print("The square root of %2d is: " % 3)
+    print(sqrt(3))
+    return
+    
 def factorial(n):
     s = 1
     for k in range(1, n):
