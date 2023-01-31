@@ -54,22 +54,35 @@ def factorial(n):
         s = s * (k + 1)
     return s
 
-def exp(x):
-    e = 2.7182818284590451
+def exp(x, e=2.7182818284590451, kmax=15, printshow=1):
+    """
+    Exponential function: comput e^x using Tayer series
+    Input: x: real number
+           e: exponential constant, =2.7182818284590451
+           kmax: integer, the maximum number of Taylor series iterations, default is 15
+           printshow: positive number if want to show the calculating process, default is 1
+    """
     x0 = int(round(x))
     
     z = x - x0
     ex = 0
-    for i in range(16):
+    for i in range(kmax):
         ex += (e**x0)*(z**i)/factorial(i)
 
     return ex
 
 
+''
+def ln(x, kmax=100, tol = 1e-14, printshow=1):
+    """
+    Compute the natural logarithm of a number of iterations
+    Input: x: real number
+           kmax: integer, the maximum number of Taylor series iterations, default is 15
+           tol: tolerence of accuracy
 
-def ln(x):
+    """
+    
     x = 1.0*x
-    kmax = 1000000
     if x == 0.0:
        return 0.0
     elif x < 0.0:
@@ -80,9 +93,13 @@ def ln(x):
     for k in range(kmax):
         sold = -1.0 + x*exp(-1*s)
         s = s + sold
-        if (abs(sold) < 1.0e-14):
+        if printshow > 0:
+            print("Before iteration %2d, s = %20.15f" % (k,s))
+           
+        if (abs(sold) < tol):
             break
-
+        
+    print("After %2d iterations, s = %20.15f" % (k+1,s))
     return s
 
 
