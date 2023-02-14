@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-main()
+int main()
 {
     int nfactorial = 1;
     int i;
@@ -20,6 +20,14 @@ main()
         }
         printf(" nfactorial = %i\n", nfactorial );
     }
-
+    return 0;
 
 }
+
+
+
+
+
+
+
+
