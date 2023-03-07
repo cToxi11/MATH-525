@@ -9,7 +9,6 @@ int main()
     int n;
     printf("Please enter a non-negative integer n ");
     scanf("%d", &n);
-
     printf("n factorial = %i\n", factorial(n));
     printf("Please enter x array ");
     for (int i=0; i<5; i++)

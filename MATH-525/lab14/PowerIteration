@@ -1,0 +1,16 @@
+CC = gcc
+FFLAGS = -O3 -Wall -std=c99
+LFFLAG =
+OBJECTS = PowerIterationAlgorithm.o \
+matrix.o
+
+.PHONY: clean
+
+PIA.exe: $(OBJECTS)
+		$(CC) $(LFLAGS) $(OBJECTS) -o PIA.exe
+
+%.o: %.c
+		$(CC) $(FFLAGS) -c $<
+
+clean:
+		del -f $(OBJECTS) PIA.exe
