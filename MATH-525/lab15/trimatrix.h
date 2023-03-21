@@ -31,8 +31,7 @@ void tset(trimatrix*,const int,const int,const double);
 void print_trimatrix_full(const trimatrix*,char*);
 trimatrix trimatrix_add(const trimatrix*,const trimatrix*);
 trimatrix trimatrix_sub(const trimatrix*,const trimatrix*);
-trimatrix trimatrix_dot_mult(const trimatrix*,
-     const trimatrix*);
+trimatrix trimatrix_dot_mult(const trimatrix*, const trimatrix*);
 vector trimatrix_vector_mult(const trimatrix*,const vector*);
 vector trisolve(const trimatrix*,const vector*);
 pentamatrix new_pentamatrix(const int);

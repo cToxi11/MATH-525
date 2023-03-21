@@ -4,7 +4,9 @@
 #include <math.h>
 #include "matrix.h"
 #include "trimatrix.h"
+#include <time.h>
 
+// main function for QR algorithm
 int main()
 {
     srand( time(NULL) );

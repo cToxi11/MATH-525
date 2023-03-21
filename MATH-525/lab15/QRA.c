@@ -1,8 +1,9 @@
 #include <stdlib.h>
 #include <assert.h>
+#include <stdio.h>
 #include "trimatrix.h"
 
-void QRA(trimatrix* T)
+void QRA(trimatrix* T) //QR algorithm with considering of deflation and shift.
 {
     // function declarations
     matrix QRdecomp(matrix* A);
@@ -17,11 +18,12 @@ void QRA(trimatrix* T)
     else
     {
         int k = FindZero(T); // see if we can deflate
+        //printf("k now: %i\n", k);
         if (k==N) // can’t deflate
         {
             // Find shift to improve convergence
             double mu = GetShift(T);
-
+            //printf("mu now: %f\n", mu);
             // Copy tridiagonal matrix into a bigger
             // matrix -- needed for QR step
             matrix R = new_matrix(N,N);
