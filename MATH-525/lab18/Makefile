@@ -3,7 +3,8 @@ C = gcc-12
 FFLAGS = -Wall -std=c99 -fopenmp
 LFLAGS = -lgomp
 
-OBJECTS = main.o
+OBJECTS = main.o \
+matrix.o
 
 main.exe: $(OBJECTS)
 		$(CC) $(LFLAGS) $(OBJECTS) -o main.exe

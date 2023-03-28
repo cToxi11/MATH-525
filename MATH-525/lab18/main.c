@@ -10,8 +10,8 @@
 
 int main(int argc , char* argv [])
 {
-    void usage ( const char* prog_name );
-    double CompTrap ( const double a, const double b, const int N);
+    void usage(const char* prog_name);
+    double CompW(const int i, const int K, const vector* V);
 
     if (argc != 4) { usage (argv [0]); }
     const int thread_count = strtol (argv [1] , NULL , 10);
@@ -26,14 +26,17 @@ int main(int argc , char* argv [])
 
 
     vector W = new_vector(N);
-    double value = 0.0;
+    vector V = new_vector(N);
     double W_norm = 0.0;
 
+    for (int i=1; i<=K; i++) {vget(V, i) = 1/i;}
+
     # pragma omp parallel for num_threads (thread_count)
+    
     for (int i=1; i <=N; i++)
     {
-        vget(W, i) = ComW(N, K, &value);
-        W_norm += fabs(get(W, i));
+        vget(W, i) = CompW(i, K, &V);
+        W_norm += fabs(vget(W, i));
     }
 
     const double time2 = omp_get_wtime ();
@@ -41,6 +44,7 @@ int main(int argc , char* argv [])
 
     printf(" With %i threads , clock_time = %11.5e (sec)\n", thread_count, clock_time);
     delete_vector(&W);
+    delete_vector(&V);
 
     return 0;
 }
@@ -54,15 +58,17 @@ void usage(const char * prog_name)
     exit (1);
 }
 
-double CompW(const int N, const int K, double* value)
+double CompW(const int m, const int K, const vector* V)
 {
-    double func(const double x);
+    double value = 0.0;
+    for (int j=1; j <=K; j++)
+    {
+        value += vgetp(V, j) / (m + j - 1);
+    }
     
+    return value;
 
-    return h*T;
+ 
 }
 
-double func(const double x)
-{
-	return(1.0 + exp(x));
-}
+
