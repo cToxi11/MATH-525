@@ -12,10 +12,10 @@ int main(int argc , char* argv [])
     void usage(const char* prog_name);
     void Matrix_W(const int N, const int K, double *norm);
 
-    if (argc != 4) { usage (argv [0]); }
-    const int thread_count = strtol (argv [1] , NULL , 10);
-    const int N = strtol (argv [2] , NULL , 10);
-    const int K = strtol (argv [3] , NULL , 10);
+    if (argc != 4) { usage (argv[0]); }
+    const int thread_count = strtol (argv[1] , NULL , 10);
+    const int N = strtol (argv[2] , NULL , 10);
+    const int K = strtol (argv[3] , NULL , 10);
     if ( thread_count <1 || N <1 || N % thread_count != 0)
     { usage (argv [0]); }
 
@@ -23,7 +23,7 @@ int main(int argc , char* argv [])
     const double time1 = omp_get_wtime();
     
 
-//#   pragma omp parallel for num_threads(thread_count)
+#   pragma omp parallel for num_threads(thread_count)
     Matrix_W(N, K, &norm);
     const double time2 = omp_get_wtime();
     const double clock_time = time2 - time1;
@@ -35,7 +35,7 @@ int main(int argc , char* argv [])
 
 void usage(const char * prog_name)
 {
-    fprintf (stderr, "usage : %s <num_intervals >\n", prog_name );
+    fprintf (stderr, "usage : %s <num_intervals >\n", prog_name);
     fprintf (stderr, "num_threads should be positive \n");
     fprintf (stderr, "Row number should be positive \n");
     fprintf (stderr, "Column number should be positive \n");
