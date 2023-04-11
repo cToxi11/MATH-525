@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# Copy/paste this job script into a text file and submit with the command:
+#    sbatch thefilename
+# job standard output will go to the file slurm-%j.out (where %j is the job ID)
+
+#SBATCH --time=00:15:00   # walltime limit (HH:MM:SS)
+#SBATCH --nodes=4    # number of nodes
+#SBATCH --ntasks-per-node=4   # 1 processor core(s) per node 
+#SBATCH --partition=class-short    # class node(s)
+mpirun -np 2 ./main.exe 160000 > output2.txt
+mpirun -np 4 ./main.exe 160000 > output4.txt
+mpirun -np 8 ./main.exe 160000 > output8.txt
+mpirun -np 16 ./main.exe 160000 > output8.txt
